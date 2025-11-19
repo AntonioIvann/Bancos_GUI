@@ -1,3 +1,5 @@
+//Clase ClienteDAO(Data Access Object) para gestionar los querys de clientes
+
 package com.banco.dao;
 
 import com.banco.config.ConexionBD;
@@ -7,7 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ClienteDAO {
-
+    // Método para crear un nuevo cliente en la base de datos
     public int crear(Cliente cliente) {
         String sql = "INSERT INTO clientes (apellido_paterno, apellido_materno, nombre) VALUES (?, ?, ?) RETURNING idc";
         try (Connection conexion = ConexionBD.obtenerConexion();
@@ -27,7 +29,7 @@ public class ClienteDAO {
         }
         return -1;
     }
-
+    // Método para obtener un cliente por su ID
     public Cliente obtenerPorId(int idc) {
         String sql = "SELECT idc, apellido_paterno, apellido_materno, nombre FROM clientes WHERE idc = ?";
         try (Connection conexion = ConexionBD.obtenerConexion();
@@ -44,7 +46,7 @@ public class ClienteDAO {
         }
         return null;
     }
-
+    // Método para obtener todos los clientes registrados
     public List<Cliente> obtenerTodos() {
         List<Cliente> clientes = new ArrayList<>();
         String sql = "SELECT idc, apellido_paterno, apellido_materno, nombre FROM clientes ORDER BY nombre";
@@ -60,7 +62,7 @@ public class ClienteDAO {
         }
         return clientes;
     }
-
+    // Método para actualizar los datos de un cliente existente
     public boolean actualizar(Cliente cliente) {
         String sql = "UPDATE clientes SET apellido_paterno = ?, apellido_materno = ?, nombre = ? WHERE idc = ?";
         try (Connection conexion = ConexionBD.obtenerConexion();
@@ -77,7 +79,7 @@ public class ClienteDAO {
             return false;
         }
     }
-
+    // Método para eliminar un cliente por su ID  
     public boolean eliminar(int idc) {
         String sql = "DELETE FROM clientes WHERE idc = ?";
         try (Connection conexion = ConexionBD.obtenerConexion();
@@ -90,7 +92,7 @@ public class ClienteDAO {
             return false;
         }
     }
-
+    // Método privado para mapear un ResultSet a un objeto Cliente
     private Cliente mapeoCliente(ResultSet rs) throws SQLException {
         Cliente cliente = new Cliente();
         cliente.setIdc(rs.getInt("idc"));

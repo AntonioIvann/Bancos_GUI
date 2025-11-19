@@ -23,7 +23,7 @@ public class PantallaLogin {
         root.setStyle("-fx-padding: 20; -fx-background-color: #f5f5f5;");
         root.setAlignment(Pos.CENTER);
 
-        Label titulo = new Label("SISTEMA BANCARIO");
+        Label titulo = new Label("SISTEMA GESTOR BANCARIO");
         titulo.setStyle("-fx-font-size: 32; -fx-font-weight: bold; -fx-text-fill: #1976d2;");
 
         // Panel de Login
@@ -36,9 +36,9 @@ public class PantallaLogin {
 
         HBox botonesMenu = new HBox(10);
         botonesMenu.setAlignment(Pos.CENTER);
-        Button btnLogin = new Button("1. Iniciar Sesión");
-        Button btnRegistro = new Button("2. Registrarse");
-        Button btnSalir = new Button("0. Finalizar");
+        Button btnLogin = new Button("Iniciar Sesión");
+        Button btnRegistro = new Button("Registrarse");
+        Button btnSalir = new Button("Finalizar");
 
         btnLogin.setStyle("-fx-padding: 10; -fx-font-size: 14;");
         btnRegistro.setStyle("-fx-padding: 10; -fx-font-size: 14;");
@@ -84,14 +84,12 @@ public class PantallaLogin {
         TextField txtUsuario = new TextField();
         txtUsuario.setPromptText("Ingrese su usuario");
         txtUsuario.setPrefWidth(300);
-        txtUsuario.setText("admin");
 
         Label lblContraseña = new Label("Contraseña:");
         lblContraseña.setStyle("-fx-font-size: 14;");
         PasswordField txtContraseña = new PasswordField();
         txtContraseña.setPromptText("Ingrese su contraseña");
         txtContraseña.setPrefWidth(300);
-        txtContraseña.setText("admin123");
 
         Button btnIniciarSesion = new Button("Iniciar Sesión");
         btnIniciarSesion.setPrefWidth(200);

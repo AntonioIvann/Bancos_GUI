@@ -1,3 +1,5 @@
+//Clase Cliente para Geters y Seters, obteniendo datos de clientes registrados
+
 package com.banco.modelo;
 
 public class Cliente {

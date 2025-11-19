@@ -1,3 +1,5 @@
+//Clase Banco para Geters y Seters
+
 package com.banco.modelo;
 
 public class Banco {

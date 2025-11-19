@@ -1,5 +1,7 @@
 package com.banco.interfaz;
 
+// Importación de clases necesarias para controles, layouts y funciones de JavaFX
+
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
@@ -15,8 +17,12 @@ import com.banco.modelo.*;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
+// Clase que representa la ventana principal de esta pantalla
+
 public class DashboardAdmin {
+    //Stage principal donde se muestra la ventana
     private Stage stage;
+    //Servicio que maneja la logica(autenticacion, movimientos, registros)
     private AutenticacionServicio autenticacionServicio;
     private BancoDAO bancoDAO;
     private ClienteDAO clienteDAO;
@@ -24,6 +30,7 @@ public class DashboardAdmin {
     private MovimientoDAO movimientoDAO;
     private DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
 
+    // Cambio de pantalla reutilizando el mismo Stage
     public DashboardAdmin(Stage stage, AutenticacionServicio autenticacionServicio) {
         this.stage = stage;
         this.autenticacionServicio = autenticacionServicio;
@@ -33,7 +40,10 @@ public class DashboardAdmin {
         this.movimientoDAO = new MovimientoDAO();
     }
 
+    // Metodo principal que arma y muestra toda la interfaz grafica
+
     public void mostrar() {
+        // Contenedor principal donde se colocarán los paneles
         BorderPane root = new BorderPane();
         root.setStyle("-fx-background-color: #f5f5f5;");
 
@@ -53,6 +63,7 @@ public class DashboardAdmin {
         scrollPrincipal.setFitToWidth(true);
         root.setCenter(scrollPrincipal);
 
+        // Se crea la escena con el diseño final y se asigna al Stage
         Scene scene = new Scene(root, 1200, 700);
         stage.setScene(scene);
         stage.setTitle("Dashboard Administrador");
@@ -60,9 +71,11 @@ public class DashboardAdmin {
     }
 
     private VBox crearHeader() {
+        // Panel vertical para organizar los elementos
         VBox header = new VBox(10);
         header.setStyle("-fx-padding: 20; -fx-background-color: #1976d2;");
         header.setAlignment(Pos.CENTER_LEFT);
+        // Etiqueta de texto para mostrar información al usuario
 
         Label titulo = new Label("PANEL ADMINISTRATIVO");
         titulo.setStyle("-fx-font-size: 28; -fx-font-weight: bold; -fx-text-fill: white;");
@@ -73,15 +86,16 @@ public class DashboardAdmin {
         header.getChildren().addAll(titulo, usuario);
         return header;
     }
-
+    // Método para crear el menú lateral con botones de navegación
     private VBox crearMenuLateral(BorderPane root) {
         VBox menu = new VBox(10);
         menu.setStyle("-fx-padding: 20; -fx-background-color: #263238; -fx-min-width: 200;");
         menu.setAlignment(Pos.TOP_CENTER);
 
+        // Etiqueta que actúa como título del menú
         Label lblMenu = new Label("MENÚ");
         lblMenu.setStyle("-fx-font-size: 14; -fx-font-weight: bold; -fx-text-fill: white;");
-
+        // Etiqueta de texto que muestra el titulo gestión de bancos
         Button btnBancos = new Button("Gestión Bancos");
         btnBancos.setPrefWidth(180);
         btnBancos.setStyle("-fx-font-size: 12; -fx-padding: 10;");
@@ -90,7 +104,7 @@ public class DashboardAdmin {
             scroll.setFitToWidth(true);
             root.setCenter(scroll);
         });
-
+        // Etiqueta de texto que muestra el titulo gestión de clientes
         Button btnClientes = new Button("Gestión Clientes");
         btnClientes.setPrefWidth(180);
         btnClientes.setStyle("-fx-font-size: 12; -fx-padding: 10;");
@@ -99,7 +113,7 @@ public class DashboardAdmin {
             scroll.setFitToWidth(true);
             root.setCenter(scroll);
         });
-
+        // Etiqueta de texto que muestra el titulo ver movimientos
         Button btnMovimientos = new Button("Ver Movimientos");
         btnMovimientos.setPrefWidth(180);
         btnMovimientos.setStyle("-fx-font-size: 12; -fx-padding: 10;");
@@ -108,7 +122,7 @@ public class DashboardAdmin {
             scroll.setFitToWidth(true);
             root.setCenter(scroll);
         });
-
+        // Etiqueta de texto que muestra el titulo cerrar sesión
         Button btnCerrarSesion = new Button("Cerrar Sesión");
         btnCerrarSesion.setPrefWidth(180);
         btnCerrarSesion.setStyle("-fx-font-size: 12; -fx-padding: 10; -fx-background-color: #d32f2f; -fx-text-fill: white;");
@@ -121,7 +135,7 @@ public class DashboardAdmin {
                                    new Separator(), btnCerrarSesion);
         return menu;
     }
-
+    // Método auxiliar para crear el contenido de la pantalla de gestión de bancos
     private VBox crearContenidoBancos() {
         VBox contenido = new VBox(15);
         contenido.setStyle("-fx-padding: 20;");
@@ -134,6 +148,7 @@ public class DashboardAdmin {
         panelAgregar.setStyle("-fx-border-color: #ccc; -fx-border-radius: 5; -fx-padding: 15; -fx-background-color: white;");
         panelAgregar.setAlignment(Pos.CENTER_LEFT);
 
+        // Campo de entrada donde el usuario escribe datos
         TextField txtNombreBanco = new TextField();
         txtNombreBanco.setPromptText("Nombre del nuevo banco");
         txtNombreBanco.setPrefWidth(300);

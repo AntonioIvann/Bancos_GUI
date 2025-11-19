@@ -1,3 +1,5 @@
+//Clase Tarjeta para Geters y Seters, obteniendo datos de tarjetas registradas
+
 package com.banco.modelo;
 
 import java.time.LocalDateTime;

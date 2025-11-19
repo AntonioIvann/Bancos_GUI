@@ -1,3 +1,5 @@
+//Clase UsuarioDAO(Data Access Object) para gestionar los querys de usuarios
+
 package com.banco.dao;
 
 import com.banco.config.ConexionBD;
@@ -7,7 +9,7 @@ import java.sql.*;
 import java.time.LocalDateTime;
 
 public class UsuarioDAO {
-
+    // Crear un nuevo usuario y devuelve su ID
     public boolean registrarUsuario(Usuario usuario) {
         String sql = "INSERT INTO usuarios (usuario, contraseña, idc, es_admin) VALUES (?, ?, ?, ?)";
         try (Connection conexion = ConexionBD.obtenerConexion();
@@ -24,7 +26,7 @@ public class UsuarioDAO {
             return false;
         }
     }
-
+    // Obtiene los datos de un usuario por su ID
     public Usuario obtenerPorUsuario(String usuario) {
         String sql = "SELECT u.idu, u.usuario, u.contraseña, u.idc, u.es_admin, u.activo, u.fecha_creacion, " +
                      "c.idc, c.apellido_paterno, c.apellido_materno, c.nombre " +
@@ -46,7 +48,7 @@ public class UsuarioDAO {
         }
         return null;
     }
-
+    // Obtiene todos los usuarios registrados en el sistema
     public boolean usuarioExiste(String usuario) {
         String sql = "SELECT COUNT(*) FROM usuarios WHERE usuario = ?";
         try (Connection conexion = ConexionBD.obtenerConexion();
@@ -63,7 +65,7 @@ public class UsuarioDAO {
         }
         return false;
     }
-
+    // Mapea e imprime los datos del usuario realzados en la base de datos
     private Usuario mapeoUsuario(ResultSet rs) throws SQLException {
         Usuario usuario = new Usuario();
         usuario.setIdu(rs.getInt("idu"));

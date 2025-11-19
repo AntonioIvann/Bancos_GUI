@@ -1,3 +1,5 @@
+//Clase MovimientoDAO(Data Access Object) para gestionar los querys de movimientos
+
 package com.banco.dao;
 
 import com.banco.config.ConexionBD;
@@ -8,7 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class MovimientoDAO {
-
+    // Crear un nuevo movimiento y devuelve su ID
     public int crear(Movimiento movimiento) {
         String sql = "INSERT INTO movimientos (idt, cantidad, tipo, descripcion) VALUES (?, ?, ?, ?) RETURNING idm";
         try (Connection conexion = ConexionBD.obtenerConexion();
@@ -29,7 +31,7 @@ public class MovimientoDAO {
         }
         return -1;
     }
-
+    // Obtiene los movimientos por ID de tarjeta de un cliente
     public List<Movimiento> obtenerPorTarjeta(int idt) {
         List<Movimiento> movimientos = new ArrayList<>();
         String sql = "SELECT idm, idt, cantidad, tipo, descripcion, fecha_movimiento FROM movimientos WHERE idt = ? ORDER BY fecha_movimiento DESC";
@@ -47,7 +49,7 @@ public class MovimientoDAO {
         }
         return movimientos;
     }
-
+     // Obtiene todos los movimientos registrados en el sistema
     public List<Movimiento> obtenerTodos() {
         List<Movimiento> movimientos = new ArrayList<>();
         String sql = "SELECT idm, idt, cantidad, tipo, descripcion, fecha_movimiento FROM movimientos ORDER BY fecha_movimiento DESC";
@@ -63,7 +65,7 @@ public class MovimientoDAO {
         }
         return movimientos;
     }
-
+    // Mapea e imprime los datos del movimiento realzado
     private Movimiento mapeoMovimiento(ResultSet rs) throws SQLException {
         Movimiento movimiento = new Movimiento();
         movimiento.setIdm(rs.getInt("idm"));

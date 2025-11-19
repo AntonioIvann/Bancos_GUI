@@ -1,3 +1,5 @@
+//Clase Movimiento para Geters y Seters, obteniendo datos de movimientos realizados
+
 package com.banco.modelo;
 
 import java.time.LocalDateTime;

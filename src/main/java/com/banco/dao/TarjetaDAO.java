@@ -1,3 +1,5 @@
+//Clase TarjetaDAO(Data Access Object) para gestionar los querys de tarjetas
+
 package com.banco.dao;
 
 import com.banco.config.ConexionBD;
@@ -8,7 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class TarjetaDAO {
-
+    // Crear una nueva tarjeta y devuelve su ID
     public int crear(Tarjeta tarjeta) {
         String sql = "INSERT INTO tarjetas (idc, idb, numero_tarjeta, saldo) VALUES (?, ?, ?, ?) RETURNING idt";
         try (Connection conexion = ConexionBD.obtenerConexion();
@@ -29,7 +31,7 @@ public class TarjetaDAO {
         }
         return -1;
     }
-
+    // Obtiene los datos de una tarjeta por su ID
     public Tarjeta obtenerPorId(int idt) {
         String sql = "SELECT idt, idc, idb, numero_tarjeta, saldo, fecha_creacion, activa FROM tarjetas WHERE idt = ?";
         try (Connection conexion = ConexionBD.obtenerConexion();
@@ -46,7 +48,7 @@ public class TarjetaDAO {
         }
         return null;
     }
-
+    // Obtiene los datos de una tarjeta por su numero
     public Tarjeta obtenerPorNumero(String numeroTarjeta) {
         String sql = "SELECT idt, idc, idb, numero_tarjeta, saldo, fecha_creacion, activa FROM tarjetas WHERE numero_tarjeta = ?";
         try (Connection conexion = ConexionBD.obtenerConexion();
@@ -63,7 +65,7 @@ public class TarjetaDAO {
         }
         return null;
     }
-
+    // Obtiene todas las tarjetas de un cliente
     public List<Tarjeta> obtenerPorCliente(int idc) {
         List<Tarjeta> tarjetas = new ArrayList<>();
         String sql = "SELECT idt, idc, idb, numero_tarjeta, saldo, fecha_creacion, activa FROM tarjetas WHERE idc = ? ORDER BY fecha_creacion DESC";
@@ -81,7 +83,7 @@ public class TarjetaDAO {
         }
         return tarjetas;
     }
-
+    // Obtiene todas las tarjetas registradas en el sistema
     public List<Tarjeta> obtenerTodas() {
         List<Tarjeta> tarjetas = new ArrayList<>();
         String sql = "SELECT idt, idc, idb, numero_tarjeta, saldo, fecha_creacion, activa FROM tarjetas ORDER BY fecha_creacion DESC";
@@ -97,7 +99,7 @@ public class TarjetaDAO {
         }
         return tarjetas;
     }
-
+    // Actualiza los datos de una tarjeta existente
     public boolean actualizar(Tarjeta tarjeta) {
         String sql = "UPDATE tarjetas SET saldo = ?, activa = ? WHERE idt = ?";
         try (Connection conexion = ConexionBD.obtenerConexion();
@@ -113,7 +115,7 @@ public class TarjetaDAO {
             return false;
         }
     }
-
+    // Elimina una tarjeta por su ID
     public boolean eliminar(int idt) {
         String sql = "DELETE FROM tarjetas WHERE idt = ?";
         try (Connection conexion = ConexionBD.obtenerConexion();
@@ -126,7 +128,7 @@ public class TarjetaDAO {
             return false;
         }
     }
-
+    // Mapea e imprime los datos de una tarjeta
     private Tarjeta mapeoTarjeta(ResultSet rs) throws SQLException {
         Tarjeta tarjeta = new Tarjeta();
         tarjeta.setIdt(rs.getInt("idt"));
