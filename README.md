@@ -148,8 +148,8 @@ app.description=Sistema de gestión bancaria con interfaz JavaFX
 
 # Base de datos
 db.url=jdbc:postgresql://localhost:5432/bancos_sistema
-db.user=postgres
-db.password=postgres
+db.user=admin
+db.password=123456
 
 # JavaFX
 javafx.version=21.0.2
