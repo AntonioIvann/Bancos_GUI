@@ -1,6 +1,6 @@
 # Sistema Bancario JavaFX
 
-Un sistema completo de gestión bancaria desarrollado en Java con interfaz gráfica JavaFX.
+Un sistema completo de gestión bancaria desarrollado en Java con interfaz gráfica en JavaFX.
 
 ## Características
 
@@ -70,8 +70,7 @@ java -jar target/sistema-bancario-javafx-2.0.0.jar
 ### Credenciales por Defecto
 
 - **Usuario**: admin
-- **Contraseña**: admin123
-- **Tipo**: Administrador
+- **Contraseña**: admin123*
 
 ### Flujo de Usuario
 

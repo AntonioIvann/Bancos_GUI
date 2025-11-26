@@ -214,9 +214,11 @@ public class DashboardAdmin {
                         if (bancoDAO.eliminar(banco.getIdb())) {
                             getTableView().getItems().remove(getIndex());
                             mostrarAlerta("Banco eliminado exitosamente", Alert.AlertType.INFORMATION);
+                        } else {
+                            mostrarAlerta("Error al eliminar el banco contiene datos", Alert.AlertType.INFORMATION);
                         }
                     } catch (Exception ex) {
-                        mostrarAlerta("Error al eliminar: " + ex.getMessage(), Alert.AlertType.ERROR);
+                        mostrarAlerta("Error al eliminar: Banco contiene datos" + ex.getMessage(), Alert.AlertType.ERROR);
                     }
                 });
             }

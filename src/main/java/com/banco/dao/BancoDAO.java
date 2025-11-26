@@ -20,17 +20,14 @@ public int crear(Banco banco) {
     // Try-with-resources, esta estructura asegura que la 'Connection' y el 'PreparedStatement' se cierren automáticamente
     // al terminar, incluso si ocurre un error. Evita fugas de memoria.
     try (Connection conexion = ConexionBD.obtenerConexion(); // Obtiene la conexión a la BD
-         PreparedStatement ps = conexion.prepareStatement(sql)) { // Prepara la sentencia SQL
-
+         PreparedStatement ps = conexion.prepareStatement(sql)) { // Prepara el estado de conexion
         // Asignar valores a los parámetros, reemplaza el primer '?' (índice 1) con el nombre que viene dentro del objeto 'banco'.
         ps.setString(1, banco.getNombre());
-
         // Ejecutar la consulta.
         // Se usa 'executeQuery' en lugar de 'executeUpdate' porque gracias al 'RETURNING idb',
         // la consulta devolverá un resultado (el ID), como si fuera un SELECT.
         // También usamos try-with-resources aquí para cerrar el ResultSet automáticamente.
         try (ResultSet rs = ps.executeQuery()) {
-            
             // Verificar si hay resultados.
             // rs.next() mueve el cursor a la primera fila del resultado.
             if (rs.next()) {
@@ -43,7 +40,6 @@ public int crear(Banco banco) {
         // Si algo falla (BD caída, error de sintaxis, etc.), se captura la excepción.
         e.printStackTrace(); // Imprime el error en la consola para depurar.
     }
-    
     // Retorno por defecto.
     // Si hubo un error o no se generó el ID, devolvemos -1 para indicar fallo.
     return -1;
@@ -128,8 +124,8 @@ public boolean eliminar(int idb) {
     // Se define la consulta SQL. El '?' es un marcador de posición (wildcard) que se sustituirá más adelante de forma segura.
     String sql = "DELETE FROM bancos WHERE idb = ?";
     // Inicio del bloque 'try-with-resources'.
-    // 1. Obtiene la conexión llamando al método estático 'obtenerConexion' de la clase 'ConexionBD'.
-    // 2. Prepara la sentencia SQL (ps) utilizando esa conexión.
+    // Obtiene la conexión llamando al método estático 'obtenerConexion' de la clase 'ConexionBD'.
+    // Prepara la sentencia SQL (ps) utilizando esa conexión.
     // Al usar este bloque, Java cerrará automáticamente la conexión y el PreparedStatement al finalizar, liberando recursos.
     try (Connection conexion = ConexionBD.obtenerConexion();
          PreparedStatement ps = conexion.prepareStatement(sql)) {
