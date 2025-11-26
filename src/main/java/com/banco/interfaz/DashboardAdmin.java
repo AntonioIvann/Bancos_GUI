@@ -273,7 +273,7 @@ public class DashboardAdmin {
             new javafx.beans.property.SimpleObjectProperty<>(cellData.getValue().getNombreCompleto()));
         colNombre.setPrefWidth(400);
 
-        TableColumn<Cliente, Void> colAcciones = new TableColumn<>("Acciones");
+ TableColumn<Cliente, Void> colAcciones = new TableColumn<>("Acciones");
         colAcciones.setPrefWidth(150);
         colAcciones.setCellFactory(param -> new TableCell<Cliente, Void>() {
             private final Button btnEliminar = new Button("Eliminar");

@@ -2,7 +2,9 @@
 //Clase principal del gestor bancario, inicia la aplicación JavaFX
 
 package com.banco.aplicacion;
+
 //Importación de clases necesarias para el funcionamiento de JavaFX
+
 import javafx.application.Application;
 import javafx.stage.Stage;
 import com.banco.servicio.AutenticacionServicio;

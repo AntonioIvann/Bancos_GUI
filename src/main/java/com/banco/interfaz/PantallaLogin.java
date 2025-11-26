@@ -1,4 +1,8 @@
+//Clase dedicada a la interfaz de usuario mostrando datos de login, registro y finalización del programa
+
 package com.banco.interfaz;
+
+//Importamos librerias necesarias de JavaFX para crear y dar diseño a la interfaz del login 
 
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -9,21 +13,31 @@ import javafx.stage.Stage;
 import com.banco.servicio.AutenticacionServicio;
 import com.banco.modelo.Usuario;
 
+//Nombre de la clase
 public class PantallaLogin {
+    //Variable para almacenar la ventana principal
     private Stage stage;
+    //Variable para el servicio de autenticacion
     private AutenticacionServicio autenticacionServicio;
-
+    //Metodo para crear la interfaz de usuario
     public PantallaLogin(Stage stage, AutenticacionServicio autenticacionServicio) {
+        //Asignamos la ventana principal
         this.stage = stage;
+        //Asignamos el servicio de autenticacion
         this.autenticacionServicio = autenticacionServicio;
     }
-
+    //Metodo para mostrar la interfaz de usuario
     public void mostrar() {
+        //Creamos la ventana principal
         VBox root = new VBox(20);
+        //Estilo de la ventana
         root.setStyle("-fx-padding: 20; -fx-background-color: #f5f5f5;");
+        //Alineación de la ventana
         root.setAlignment(Pos.CENTER);
 
+        //Titulo de la ventana
         Label titulo = new Label("SISTEMA GESTOR BANCARIO");
+        //Estilo de la etiqueta del titulo
         titulo.setStyle("-fx-font-size: 32; -fx-font-weight: bold; -fx-text-fill: #1976d2;");
 
         // Panel de Login
